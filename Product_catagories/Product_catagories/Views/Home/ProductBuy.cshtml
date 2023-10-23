@@ -1,0 +1,45 @@
+﻿@model List<Product_catagories.EF.Product>
+
+@{
+    ViewBag.Title = "ProductBuy";
+}
+
+<h2>ProductBuy</h2>
+<form method="post">
+    <table border="1">
+        <tr border="1">
+            <td border="1">Name</td>
+            <td border="1">Category</td>
+            <td border="1">Price</td>
+        </tr>
+        @foreach (var product in Model)
+        {
+            <tr border="1">
+                <td border="1">@product.Name</td>
+                @foreach (var c in ViewBag.Catagory)
+                {
+                    if (c.Id == product.C_Id)
+                    {
+                        <td>
+                            @c.Name
+                        </td>
+                    }
+                }
+                <td>@product.Price</td>
+                <td>
+                    <input type="checkbox" name="selectedProducts" value="@product.Id" @(IsProductSelected(product.Id) ? "checked" : "") />
+                </td>
+            </tr>
+        }
+    </table>
+    <input type="submit" value="Add to Cart" />
+</form>
+
+@functions {
+    public bool IsProductSelected(int productId)
+    {
+        string[] selectedProductIds = Session["SelectedProductIds"] as string[];
+
+        return selectedProductIds != null && selectedProductIds.Contains(productId.ToString());
+    }
+}

@@ -1,0 +1,21 @@
+﻿
+@{
+    ViewBag.Title = "addProduct";
+}
+
+<h2>addProduct</h2>
+<form action="" method="post">
+    <input type="text" name="Name" placeholder="Name" value=""><br />
+    <input type="text" name="Price" placeholder="Price" value=""><br />
+    Catagory: <select name="C_Id">
+        <option selected disabled>Catagory</option>
+        @foreach (var d in ViewBag.Catagory)
+        {
+            <option value="@d.Id">@d.Name </option>
+        }
+    </select><br />    <input type="submit" value="Add">
+
+</form>
+
+
+

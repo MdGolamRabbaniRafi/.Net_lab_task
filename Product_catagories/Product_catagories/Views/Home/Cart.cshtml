@@ -1,0 +1,46 @@
+﻿@{
+    ViewBag.Title = "Cart";
+}
+
+<h2>Cart</h2>
+<form action="" method="post">
+    <table>
+
+        @if (ViewBag.SelectedProducts != null)
+        {
+            <tr>
+                <th>Name</th>
+                <th>Category</th>
+                <th>Price</th>
+            </tr>
+            foreach (var product in ViewBag.SelectedProducts)
+            {
+                <tr>
+                    <td>@product.Name</td>
+                    @foreach (var c in ViewBag.Catagory)
+                    {
+                        if (c.Id == product.C_Id)
+                        {
+                            <td>
+                                @c.Name
+                            </td>
+                        }
+
+                    }
+                    <td>@product.Price</td>
+                </tr>
+            }
+        }
+        else
+        {
+            <tr>
+                <td colspan="3">Your cart is empty.</td>
+            </tr>
+        }
+    </table>
+    <br />
+    <input type="submit" value="Place Order">
+    <a href="@Url.Action("ProductBuy")" class="btn btn-default">Back</a>
+
+</form>
+

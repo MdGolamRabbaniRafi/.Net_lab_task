@@ -1,0 +1,31 @@
+﻿
+@{
+    ViewBag.Title = "Catagory";
+}
+
+<h2>Catagory</h2>
+<form>
+    <a class="btn btn-warning" href="/Home/addCatagory">Add</a>
+    <table border="1" class="table">
+        <tr>
+            <td>Id</td>
+            <td>Name</td>
+            <td>Details</td>
+            <td>Edit</td>
+            <td>Delete</td>
+
+        </tr>
+        @foreach (var i in Model)
+        {
+            <tr>
+                <td>@i.Id</td>
+                <td>@i.Name</td>
+                <td><a class="btn btn-warning" href="/Home/addCatagory">Add</a></td>
+                <td><a class="btn btn-warning" href="/Home/EditCatagory/@i.Id">Edit</a></td>
+                <td><a class="btn btn-warning" href="/Home/deleteCatagory/@i.Id">Delete</a></td>
+                <td>
+            </tr>
+        }
+    </table>
+</form>
+

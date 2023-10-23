@@ -1,0 +1,22 @@
+﻿
+@{
+    ViewBag.Title = "EditProduct";
+}
+
+<h2>EditProduct</h2>
+
+<form action="" method="post">
+    <input type="text" name="Name" placeholder="Name" value="@Model.Name"><br />
+    <input type="hidden" name="Id" placeholder="Id" value="@Model.Id"><br />
+    <input type="text" name="Price" placeholder="Name" value="@Model.Price"><br />
+    Course: <select name="C_Id">
+        <option selected disabled>Catagories</option>
+        @foreach (var d in ViewBag.Catagory)
+        {
+            <option value="@d.Id">@d.Name </option>
+        }
+    </select><br/>
+
+    <input type="submit" value="Save">
+
+</form>
