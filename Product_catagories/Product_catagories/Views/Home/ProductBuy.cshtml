@@ -5,12 +5,14 @@
 }
 
 <h2>ProductBuy</h2>
+<a class="btn btn-success" href="/Home/OrderList">View Orders</a>
+<br />
 <form method="post">
-    <table border="1">
-        <tr border="1">
-            <td border="1">Name</td>
-            <td border="1">Category</td>
-            <td border="1">Price</td>
+    <table border="1" class="table">
+        <tr>
+            <td>Name</td>
+            <td>Category</td>
+            <td>Price</td>
         </tr>
         @foreach (var product in Model)
         {
@@ -26,9 +28,20 @@
                     }
                 }
                 <td>@product.Price</td>
-                <td>
-                    <input type="checkbox" name="selectedProducts" value="@product.Id" @(IsProductSelected(product.Id) ? "checked" : "") />
-                </td>
+                @if (product.Quantity > 0)
+                {
+                    <td>
+                        <input type="checkbox" name="selectedProducts" value="@product.Id" @(IsProductSelected(product.Id) ? "checked" : "") /> Order
+                    </td>
+                }
+                else
+                {
+                    <td>
+                        Sold Out
+                    </td>
+                }
+
+
             </tr>
         }
     </table>

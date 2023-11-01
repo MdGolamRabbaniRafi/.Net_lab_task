@@ -5,7 +5,7 @@
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="Name" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <NavigationProperty Name="Products" Relationship="Self.FK_Products_Catagories" FromRole="Catagories" ToRole="Products" />
   </EntityType>
   <EntityType Name="Order">
@@ -13,7 +13,9 @@
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="Customer_Name" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="Customer_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Order_Date" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Order_Time" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <NavigationProperty Name="ProductOrders" Relationship="Self.FK_ProductOrder_Orders" FromRole="Orders" ToRole="ProductOrder" />
   </EntityType>
   <EntityType Name="ProductOrder">
@@ -23,6 +25,7 @@
     <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="O_Id" Type="Int32" />
     <Property Name="P_Id" Type="Int32" />
+    <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <NavigationProperty Name="Order" Relationship="Self.FK_ProductOrder_Orders" FromRole="ProductOrder" ToRole="Orders" />
     <NavigationProperty Name="Product" Relationship="Self.FK_ProductOrder_Products" FromRole="ProductOrder" ToRole="Products" />
   </EntityType>
@@ -31,11 +34,31 @@
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="Name" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="Price" Type="Int32" Nullable="false" />
     <Property Name="C_Id" Type="Int32" />
+    <Property Name="Quantity" Type="Int32" />
     <NavigationProperty Name="Catagory" Relationship="Self.FK_Products_Catagories" FromRole="Products" ToRole="Catagories" />
     <NavigationProperty Name="ProductOrders" Relationship="Self.FK_ProductOrder_Products" FromRole="Products" ToRole="ProductOrder" />
+  </EntityType>
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="User_type">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Username" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="UserType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
   </EntityType>
   <Association Name="FK_Products_Catagories">
     <End Role="Catagories" Type="Self.Catagory" Multiplicity="0..1" />
@@ -73,11 +96,13 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <EntityContainer Name="Product_catagoriesEntities5" annotation:LazyLoadingEnabled="true">
+  <EntityContainer Name="Product_catagoriesEntities6" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="Catagories" EntityType="Self.Catagory" />
     <EntitySet Name="Orders" EntityType="Self.Order" />
     <EntitySet Name="ProductOrders" EntityType="Self.ProductOrder" />
     <EntitySet Name="Products" EntityType="Self.Product" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+    <EntitySet Name="User_type" EntityType="Self.User_type" />
     <AssociationSet Name="FK_Products_Catagories" Association="Self.FK_Products_Catagories">
       <End Role="Catagories" EntitySet="Catagories" />
       <End Role="Products" EntitySet="Products" />

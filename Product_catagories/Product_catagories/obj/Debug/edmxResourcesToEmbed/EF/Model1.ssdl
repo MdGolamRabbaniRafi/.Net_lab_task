@@ -5,14 +5,16 @@
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Name" Type="nchar" MaxLength="10" />
+    <Property Name="Name" Type="varchar" MaxLength="50" />
   </EntityType>
   <EntityType Name="Orders">
     <Key>
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Customer_Name" Type="nchar" MaxLength="10" />
+    <Property Name="Customer_Name" Type="varchar" MaxLength="50" />
+    <Property Name="Order_Date" Type="varchar" MaxLength="50" />
+    <Property Name="Order_Time" Type="varchar" MaxLength="50" />
   </EntityType>
   <EntityType Name="ProductOrder">
     <Key>
@@ -21,15 +23,36 @@
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="O_Id" Type="int" />
     <Property Name="P_Id" Type="int" />
+    <Property Name="Status" Type="varchar" MaxLength="50" />
   </EntityType>
   <EntityType Name="Products">
     <Key>
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Name" Type="nchar" MaxLength="10" />
+    <Property Name="Name" Type="varchar" MaxLength="50" />
     <Property Name="Price" Type="int" Nullable="false" />
     <Property Name="C_Id" Type="int" />
+    <Property Name="Quantity" Type="int" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="User_type">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Username" Type="varchar" MaxLength="100" />
+    <Property Name="Password" Type="varchar" MaxLength="50" />
+    <Property Name="UserType" Type="varchar" MaxLength="50" />
   </EntityType>
   <Association Name="FK_ProductOrder_Orders">
     <End Role="Orders" Type="Self.Orders" Multiplicity="0..1" />
@@ -72,6 +95,8 @@
     <EntitySet Name="Orders" EntityType="Self.Orders" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="ProductOrder" EntityType="Self.ProductOrder" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Products" EntityType="Self.Products" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="User_type" EntityType="Self.User_type" Schema="dbo" store:Type="Tables" />
     <AssociationSet Name="FK_ProductOrder_Orders" Association="Self.FK_ProductOrder_Orders">
       <End Role="Orders" EntitySet="Orders" />
       <End Role="ProductOrder" EntitySet="ProductOrder" />

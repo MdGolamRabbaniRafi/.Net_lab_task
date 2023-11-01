@@ -1,0 +1,67 @@
+﻿
+@{
+    ViewBag.Title = "ProductBuy";
+}
+
+<h2>ProductBuy</h2>
+<br />
+<form method="post">
+    <table border="1" class="table">
+        <tr>
+            <td>Name</td>
+            <td>Category</td>
+            <td>Price</td>
+            <td>Status</td>
+            <td>Availabe Quantity</td>
+            <td>Customer Name</td>
+
+
+
+        </tr>
+        @foreach (var productOrder in Model)
+        {
+            <tr>
+                @foreach (var product in ViewBag.Product)
+                {
+                    if (productOrder.P_Id == product.Id)
+                    {
+                        <td>@product.Name</td>
+
+                        foreach (var c in ViewBag.Catagory)
+                        {
+                            if (c.Id == product.C_Id)
+                            {
+                                <td>
+                                    @c.Name
+                                </td>
+                            }
+                        }
+                        <td>@product.Price</td>
+                        <td>@productOrder.Status</td>
+                        <td>@product.Quantity</td>
+                        foreach (var o in ViewBag.Order)
+                        {
+                            if (o.Id == productOrder.O_Id)
+                            {
+                                <td>@o.Customer_Name</td>
+                            }
+                        }
+                        if (productOrder.Status == "Ordered")
+                        {
+                            <td>
+                                <a class="btn btn-success" href="/Home/AcceptOrder/@productOrder.Id">Accept</a>
+                            </td>
+                            <td>
+                                <a class="btn btn-success" href="/Home/RejectOrder/@productOrder.Id">Reject</a>
+                            </td>
+                        }
+
+                    }
+                }
+
+            </tr>
+        }
+    </table>
+</form>
+
+

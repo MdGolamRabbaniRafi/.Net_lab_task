@@ -12,14 +12,11 @@ namespace Product_catagories.EF
     using System;
     using System.Collections.Generic;
     
-    public partial class ProductOrder
+    public partial class User_type
     {
         public int Id { get; set; }
-        public Nullable<int> O_Id { get; set; }
-        public Nullable<int> P_Id { get; set; }
-        public string Status { get; set; }
-    
-        public virtual Order Order { get; set; }
-        public virtual Product Product { get; set; }
+        public string Username { get; set; }
+        public string Password { get; set; }
+        public string UserType { get; set; }
     }
 }

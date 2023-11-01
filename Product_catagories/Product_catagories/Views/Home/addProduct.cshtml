@@ -5,17 +5,40 @@
 
 <h2>addProduct</h2>
 <form action="" method="post">
-    <input type="text" name="Name" placeholder="Name" value=""><br />
-    <input type="text" name="Price" placeholder="Price" value=""><br />
+   Name: <input type="text" name="Name" placeholder="Name" value=""><br />
+   Price: <input type="text" name="Price" placeholder="Price" value=""><br />
     Catagory: <select name="C_Id">
         <option selected disabled>Catagory</option>
         @foreach (var d in ViewBag.Catagory)
         {
             <option value="@d.Id">@d.Name </option>
         }
-    </select><br />    <input type="submit" value="Add">
+
+    </select><br />
+   Quantity: <input type="number" name="Quantity" id="Quantity" value="1">
+    <button type="button" class="quantity-button" name="Quantity" onclick="decrementQuantity()">-</button>
+    <button type="button" class="quantity-button" name="Quantity" onclick="incrementQuantity()">+</button>
+
+    <input type="submit" value="Add">
 
 </form>
+
+
+<script>
+    function incrementQuantity() {
+        var quantityInput = document.getElementById("Quantity");
+        quantityInput.value = parseInt(quantityInput.value) + 1;
+    }
+
+    function decrementQuantity() {
+        var quantityInput = document.getElementById("Quantity");
+        var quantityValue = parseInt(quantityInput.value);
+        if (quantityValue > 1) {
+            quantityInput.value = quantityValue - 1;
+        }
+    }
+</script>
+
 
 
 

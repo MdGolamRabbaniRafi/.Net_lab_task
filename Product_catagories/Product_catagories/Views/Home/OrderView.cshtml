@@ -1,0 +1,55 @@
+﻿@model List<Product_catagories.EF.Product>
+
+@{
+    ViewBag.Title = "Order View";
+}
+
+<h2>Order View</h2>
+<form method="post">
+    <table border="1" class="table">
+        <tr>
+            <td>Name</td>
+            <td>Category</td>
+            <td>Price</td>
+            <td>Status</td>
+        </tr>
+
+        @if (Model != null && ViewBag.orders != null && Session["Name"] != null)
+                    {
+
+                        foreach (var product in Model)
+                        {
+                <tr>
+                    <td>@product.Name</td>
+                    @foreach (var c in ViewBag.Catagory)
+                    {
+                        if (c.Id == product.C_Id)
+                        {
+                            <td>@c.Name</td>
+                        }
+                    }
+                    <td>@product.Price</td>
+                    @foreach (var productOrder in ViewBag.productorders)
+                    {
+                        if (product.Id == productOrder.P_Id)
+                        {
+                            if (productOrder.Status == "Ordered")
+                            {
+                                <td><a class="btn btn-warning" href="/Home/CancelOrder/@productOrder.Id">Cancel</a></td>
+
+                            }
+                            else
+                            {
+                                <td>@productOrder.Status</td>
+                            }
+                        }
+                    }
+
+
+                </tr>
+            }
+         }
+
+    </table>
+</form>
+<a class="btn btn-success" href="/Home/ProductBuy">Back</a>

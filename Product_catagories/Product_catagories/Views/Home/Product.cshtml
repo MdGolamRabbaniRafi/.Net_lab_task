@@ -11,6 +11,8 @@
             <td>Id</td>
             <td>Name</td>
             <td>Catagory</td>
+            <td>price</td>
+
             <td>Edit</td>
             <td>Delete</td>
 
@@ -20,19 +22,22 @@
             <tr>
                 <td>@i.Id</td>
                 <td>@i.Name</td>
-                    @foreach (var c in ViewBag.Catagory)
+                @foreach (var c in ViewBag.Catagory)
+                {
+                    if (c.Id == i.C_Id)
                     {
-                        if (c.Id == i.C_Id)
-                        {
                         <td>
                             @c.Name
                         </td>
                     }
 
                 }
-                    <td><a class="btn btn-warning" href="/Home/EditProduct/@i.Id">Edit</a></td>
-                    <td><a class="btn btn-warning" href="/Home/deleteProduct/@i.Id">Delete</a></td>
-                </tr>
+                <td>@i.Price</td>
+                <td>@i.Quantity</td>
+
+                <td><a class="btn btn-warning" href="/Home/EditProduct/@i.Id">Edit</a></td>
+                <td><a class="btn btn-warning" href="/Home/deleteProduct/@i.Id">Delete</a></td>
+            </tr>
         }
     </table>
 </form>

@@ -1,22 +1,46 @@
-﻿
-@{
+﻿@{
     ViewBag.Title = "EditProduct";
 }
 
 <h2>EditProduct</h2>
-
 <form action="" method="post">
     <input type="text" name="Name" placeholder="Name" value="@Model.Name"><br />
     <input type="hidden" name="Id" placeholder="Id" value="@Model.Id"><br />
-    <input type="text" name="Price" placeholder="Name" value="@Model.Price"><br />
-    Course: <select name="C_Id">
-        <option selected disabled>Catagories</option>
-        @foreach (var d in ViewBag.Catagory)
+    <input type="text" name="Price" placeholder="Price" value="@Model.Price"><br />
+    Category: <select name="C_Id">
+    <option disabled>Categories</option>
+    @foreach (var d in ViewBag.Catagory)
+    {
+        if (d.Id == Model.C_Id)
         {
-            <option value="@d.Id">@d.Name </option>
+            <option selected value="@d.Id">@d.Name</option>
+
         }
-    </select><br/>
+        else
+        {
+            <option value="@d.Id">@d.Name</option>
 
+        }
+    }
+</select><br />
+    Quantity: <input type="number" name="Quantity" id="Quantity" value="@Model.Quantity">
+    <button type="button" class="quantity-button" onclick="decrementQuantity()">-</button>
+    <button type="button" class="quantity-button" onclick="incrementQuantity()">+</button>
+    <br/>
     <input type="submit" value="Save">
-
 </form>
+
+<script>
+    function incrementQuantity() {
+        var quantityInput = document.getElementById("Quantity");
+        quantityInput.value = parseInt(quantityInput.value) + 1;
+    }
+
+    function decrementQuantity() {
+        var quantityInput = document.getElementById("Quantity");
+        var quantityValue = parseInt(quantityInput.value);
+        if (quantityValue > 1) {
+            quantityInput.value = quantityValue - 1;
+        }
+    }
+</script>

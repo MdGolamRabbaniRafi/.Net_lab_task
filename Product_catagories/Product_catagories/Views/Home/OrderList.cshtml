@@ -1,0 +1,34 @@
+﻿
+@{
+    ViewBag.Title = "OrderList";
+}
+
+<h2>OrderList</h2>
+
+<form>
+    <table border="1" class="table">
+        <tr>
+            <td>Order Id</td>
+            <td>Name</td>
+            <td>Date</td>
+            <td>Time</td>
+
+            <td>Details</td>
+
+        </tr>
+        @foreach (var i in Model)
+        {
+            <tr>
+                <td>@i.Id</td>
+                <td>@i.Customer_Name</td>
+                <td>@i.Order_Date</td>
+
+                <td>@i.Order_Time</td>
+                <td><a class="btn btn-warning" href="/Home/OrderView/@i.Id">Details</a></td>
+            </tr>
+        }
+    </table>
+</form>
+
+
+

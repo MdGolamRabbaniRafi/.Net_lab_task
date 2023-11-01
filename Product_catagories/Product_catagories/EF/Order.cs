@@ -21,6 +21,8 @@ namespace Product_catagories.EF
     
         public int Id { get; set; }
         public string Customer_Name { get; set; }
+        public string Order_Date { get; set; }
+        public string Order_Time { get; set; }
     
         public virtual ICollection<ProductOrder> ProductOrders { get; set; }
     }

@@ -13,10 +13,10 @@ namespace Product_catagories.EF
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class Product_catagoriesEntities5 : DbContext
+    public partial class Product_catagoriesEntities6 : DbContext
     {
-        public Product_catagoriesEntities5()
-            : base("name=Product_catagoriesEntities5")
+        public Product_catagoriesEntities6()
+            : base("name=Product_catagoriesEntities6")
         {
         }
     
@@ -29,5 +29,7 @@ namespace Product_catagories.EF
         public DbSet<Order> Orders { get; set; }
         public DbSet<ProductOrder> ProductOrders { get; set; }
         public DbSet<Product> Products { get; set; }
+        public DbSet<sysdiagram> sysdiagrams { get; set; }
+        public DbSet<User_type> User_type { get; set; }
     }
 }
